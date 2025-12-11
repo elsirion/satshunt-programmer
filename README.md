@@ -94,4 +94,5 @@ React native & Expo libraries are used to make building the UI easier.
 
 Keep all your keys secret, and be careful when creating your cards that there are no other potential listening devices in range.
 
-# [Testing](testing.md)
+# Mock server for Testing
+[https://bolt-card-mock-server.vercel.app/](https://bolt-card-mock-server.vercel.app/)
