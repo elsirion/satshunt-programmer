@@ -116,7 +116,7 @@ export default function ReadNFCScreen() {
                         }}
                     >
                         <Button icon="nfc" mode="contained" onPress={readNfc} compact={true} color="#f79928">
-                            Press Here to Read NFC
+                            Tap Here to enable NFC reader
                         </Button>
                     </View>
                 )}

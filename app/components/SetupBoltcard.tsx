@@ -19,6 +19,7 @@ const WithStep = ({ step, current, children }: any) => {
     return step === current ? children : null;
 };
 export default function SetupBoltcard({ url }: any) {
+    console.log("SetupBoltcard URL:", url);
     const [step, setStep] = useState(SetupStep.Init);
     const [readingNfc, setReadingNfc] = useState(false);
     const [error, setError] = useState("");
