@@ -13,7 +13,7 @@
             "bundleIdentifier": "org.boltcard.programmer"
         },
         "android": {
-            "versionCode": 1764715216,
+            "versionCode": 1766085752,
             "package": "org.boltcard.programmer",
             "adaptiveIcon": {
                 "backgroundColor": "#E6F4FE",
