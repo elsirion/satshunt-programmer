@@ -5,8 +5,8 @@ export default function defineConfig({ config }: ConfigContext): ExpoConfig {
     const apiKey = process.env.EXPO_PUBLIC_BREEZ_LIQUID_API_KEY ?? "";
     return {
         ...config,
-        name: "bolt-card-programmer",
-        slug: "bolt-card-programmer",
+        name: "Satshunt Programmer",
+        slug: "satshunt-programmer",
         version: "0.5.1",
         orientation: "portrait",
         icon: "./assets/images/icon.png",
@@ -15,11 +15,11 @@ export default function defineConfig({ config }: ConfigContext): ExpoConfig {
         newArchEnabled: true,
         ios: {
             supportsTablet: true,
-            bundleIdentifier: "com.lightningnfcapp",
+            bundleIdentifier: "net.satshunt.nfc-programmer",
         },
         android: {
             versionCode: 1766085752,
-            package: "com.lightningnfcapp",
+            package: "net.satshunt.nfc_programmer",
             adaptiveIcon: {
                 backgroundColor: "#E6F4FE",
                 foregroundImage: "./assets/images/android-icon-foreground.png",
