@@ -106,8 +106,24 @@ export default function CreateBoltcardScreen() {
             if (privateUID) {
                 await Ntag424.setPrivateUid();
             }
-            const piccOffset = ndefMessage.indexOf("p=") + 9;
-            const macOffset = ndefMessage.indexOf("c=") + 9;
+            // Calculate offsets from actual encoded NDEF bytes
+            // The NDEF file has a 2-byte length prefix, so we add 2 to the byte positions
+            // We search for ASCII "p=" (0x70 0x3d) and "c=" (0x63 0x3d) in the encoded bytes
+            const pBytes = [0x70, 0x3d]; // "p="
+            const cBytes = [0x63, 0x3d]; // "c="
+            let piccByteOffset = -1;
+            let macByteOffset = -1;
+            for (let i = 0; i < bytes.length - 1; i++) {
+                if (bytes[i] === pBytes[0] && bytes[i + 1] === pBytes[1] && piccByteOffset === -1) {
+                    piccByteOffset = i;
+                }
+                if (bytes[i] === cBytes[0] && bytes[i + 1] === cBytes[1]) {
+                    macByteOffset = i;
+                }
+            }
+            // Add 2 for NDEF file length prefix, then 2 to skip past "p=" or "c="
+            const piccOffset = piccByteOffset + 2 + 2;
+            const macOffset = macByteOffset + 2 + 2;
             //change file settings
             await Ntag424.setBoltCardFileSettings(piccOffset, macOffset);
             //get uid
@@ -139,7 +155,10 @@ export default function CreateBoltcardScreen() {
             setNdefRead(setNdefMessage);
 
             //we have the latest read from the card fire it off to the server.
-            const httpsLNURL = setNdefMessage.replace("lnurlw://", "https://");
+            // Convert lnurlw:// to https:// for validation, leave other schemes as-is
+            const httpsLNURL = setNdefMessage.startsWith("lnurlw://")
+                ? setNdefMessage.replace("lnurlw://", "https://")
+                : setNdefMessage;
             fetch(httpsLNURL)
                 .then((response) => response.json())
                 .then((json) => {

@@ -52,7 +52,7 @@ export default function defineConfig({ config }: ConfigContext): ExpoConfig {
             [
                 "./plugin/android-signing.ts",
                 {
-                    storeFile: "../../../my-upload-key.keystore",
+                    storeFile: "../../my-upload-key.keystore",
                     keyAlias: "onesandzeros-key",
                     storePassword: process.env.ANDROID_KEYSTORE_PASSWORD,
                     keyPassword: process.env.ANDROID_KEY_PASSWORD,
